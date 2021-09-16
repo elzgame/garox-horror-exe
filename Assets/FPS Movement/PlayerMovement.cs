@@ -40,25 +40,17 @@ public class PlayerMovement : MonoBehaviour
             GameManager.audioSource.PlayOneShot(keySound);
         }
 
-    }
-
-    void OnCollisionEnter(Collision other)
-    {
-
         if (other.gameObject.tag == "Door")
         {
             bool isOpened = other.gameObject.GetComponent<Door>().isOpened;
             if (isOpened == false)
             {
+                other.gameObject.GetComponent<Door>().isOpened = true;
                 Debug.Log("Buka pintu!");
                 other.gameObject.GetComponent<Animator>().SetTrigger("OpenDoor");
                 GameManager.audioSource.PlayOneShot(doorSound);
             }
-            else
-            {
-                Debug.Log("Pintu telah dibuka!");
-            }
         }
-
     }
+
 }
