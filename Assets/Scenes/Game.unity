@@ -3964,7 +3964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keySound: {fileID: 8300000, guid: 9961bac0d2eb876449d3c2e72a44b481, type: 3}
-  doorSound: {fileID: 8300000, guid: 1727617b39607a648a979b94fcf16de5, type: 3}
+  doorSound: {fileID: 8300000, guid: 491bcae3152dfba42a625037ef0dc783, type: 3}
   controller: {fileID: 1243779672}
   movementSpeed: 5
 --- !u!136 &1243779674
