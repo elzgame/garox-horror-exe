@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Custom from SuryaElz
     public AudioClip keySound;
+    public AudioClip doorSound;
     public CharacterController controller;
     public float movementSpeed;
 
@@ -31,7 +32,33 @@ public class PlayerMovement : MonoBehaviour
             GameManager.keyCount++;
             GameManager.audioSource.PlayOneShot(keySound);
         }
+
+        if (other.gameObject.tag == "KeyRed")
+        {
+            Destroy(other.gameObject);
+            GameManager.keyCount++;
+            GameManager.audioSource.PlayOneShot(keySound);
+        }
+
     }
 
+    void OnCollisionEnter(Collision other)
+    {
 
+        if (other.gameObject.tag == "Door")
+        {
+            bool isOpened = other.gameObject.GetComponent<Door>().isOpened;
+            if (isOpened == false)
+            {
+                Debug.Log("Buka pintu!");
+                other.gameObject.GetComponent<Animator>().SetTrigger("OpenDoor");
+                GameManager.audioSource.PlayOneShot(doorSound);
+            }
+            else
+            {
+                Debug.Log("Pintu telah dibuka!");
+            }
+        }
+
+    }
 }

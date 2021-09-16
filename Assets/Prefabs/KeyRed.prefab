@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5233908791306043789}
   - component: {fileID: 5573803225363513423}
   m_Layer: 0
-  m_Name: RedKey
-  m_TagString: Key
+  m_Name: KeyRed
+  m_TagString: KeyRed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

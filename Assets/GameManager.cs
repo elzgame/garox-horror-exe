@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public static AudioSource audioSource;
     public Text perintahText;
     public Animator perintahAnimator;
+    private bool doneCollectingKeys;
 
     void Start()
     {
@@ -18,13 +19,13 @@ public class GameManager : MonoBehaviour
         keyAvailable = GameObject.FindGameObjectsWithTag("Key").Length;
 
         //Perintah objektif awal
-        StartCoroutine(Perintah(3.0f));
+        StartCoroutine(Perintah(3.0f, "Objektif : Cari kunci emas yang tersedia!"));
     }
 
-    private IEnumerator Perintah(float timeAppear)
+    private IEnumerator Perintah(float timeAppear, string perintahTeks)
     {
         perintahAnimator.SetBool("Run", true);
-        perintahText.text = "Objektif : Cari kunci emas yang tersedia!";
+        perintahText.text = perintahTeks;
         yield return new WaitForSeconds(timeAppear);
         perintahAnimator.SetBool("Run", false);
     }
@@ -32,6 +33,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         keyCountText.text = keyCount.ToString() + " / " + keyAvailable.ToString();
+        if (keyCount >= keyAvailable && doneCollectingKeys == false)
+        {
+            Debug.Log("Sudah selesai mengambil semua kunci emas!");
+            StartCoroutine(Perintah(4.0f, "Semua kunci emas telah ditemukan, Objektif : Cari kunci merah untuk menyelesaikan game!"));
+            doneCollectingKeys = true;
+        }
     }
 
 }
