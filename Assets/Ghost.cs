@@ -13,13 +13,11 @@ public class Ghost : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100))
         {
-            var distance = hit.distance;
-            Debug.Log(hit.point);
-            Debug.Log(hit.transform.tag);
             if (hit.transform.tag == "Player")
             {
                 float step = speed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(-player.transform.position.x, transform.position.y, -player.transform.position.z), step);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z), step);
+                transform.LookAt(player.transform, Vector3.up);
             }
         }
 
