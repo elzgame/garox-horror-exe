@@ -1,6 +1,5 @@
-// Some stupid rigidbody based movement by Dani
-
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,7 +10,13 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip doorSound;
     public CharacterController controller;
     public float movementSpeed;
+    public List<int> keyCollected;
+    private GameManager gameManager;
 
+    void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     void Update()
     {
@@ -31,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.gameObject);
             GameManager.keyCount++;
             GameManager.audioSource.PlayOneShot(keySound);
+            keyCollected.Add(other.gameObject.GetComponent<Key>().keyID);
         }
 
         if (other.gameObject.tag == "KeyRed")
@@ -42,13 +48,29 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.gameObject.tag == "Door")
         {
-            bool isOpened = other.gameObject.GetComponent<Door>().isOpened;
-            if (isOpened == false)
+            bool isMatch = false;
+            for (int x = 0; x < keyCollected.Count; x++)
             {
-                other.gameObject.GetComponent<Door>().isOpened = true;
-                Debug.Log("Buka pintu!");
-                other.gameObject.GetComponent<Animator>().SetTrigger("OpenDoor");
-                GameManager.audioSource.PlayOneShot(doorSound);
+                if (other.gameObject.GetComponent<Door>().doorID == keyCollected[x])
+                {
+                    isMatch = true;
+                }
+            }
+            if (isMatch == true)
+            {
+                bool isOpened = other.gameObject.GetComponent<Door>().isOpened;
+                if (isOpened == false)
+                {
+                    other.gameObject.GetComponent<Door>().isOpened = true;
+                    Debug.Log("Buka pintu!");
+                    other.gameObject.GetComponent<Animator>().SetTrigger("OpenDoor");
+                    GameManager.audioSource.PlayOneShot(doorSound);
+                }
+                isMatch = false;
+            }
+            else
+            {
+                StartCoroutine(gameManager.Perintah(3.0f, "Tidak dapat membuka pintu, temukan kunci yang benar!"));
             }
         }
     }

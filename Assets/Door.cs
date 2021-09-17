@@ -5,4 +5,5 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public bool isOpened = false;
+    public int doorID;
 }

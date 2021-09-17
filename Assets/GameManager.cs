@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Perintah(3.0f, "Objektif : Cari kunci emas yang tersedia!"));
     }
 
-    private IEnumerator Perintah(float timeAppear, string perintahTeks)
+    public IEnumerator Perintah(float timeAppear, string perintahTeks)
     {
         perintahAnimator.SetBool("Run", true);
         perintahText.text = perintahTeks;
