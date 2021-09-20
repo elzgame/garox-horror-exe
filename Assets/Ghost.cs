@@ -12,9 +12,11 @@ public class Ghost : MonoBehaviour
     public AudioClip soundChasing;
     public AudioClip soundSamlekom;
     public AudioClip soundCaught;
-    private AudioSource source;
+    public AudioSource source;
     public int chasingTimeSound;
     private bool isChasingSound = false;
+    public GameObject garoxJumpScareUI;
+
     void Start()
     {
         source = GetComponent<AudioSource>();
@@ -48,7 +50,6 @@ public class Ghost : MonoBehaviour
         yield return new WaitForSeconds(chasingTime);
         isChasingSound = false;
     }
-
 }
 
 

@@ -1,25 +1,31 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static int keyCount;
     private int keyAvailable;
     public Text keyCountText;
-    public static float timer;
     public static AudioSource audioSource;
     public Text perintahText;
     public Animator perintahAnimator;
     private bool doneCollectingKeys;
+    public AudioClip gameOverSound;
+    public GameObject gameOverUI;
+
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        keyAvailable = GameObject.FindGameObjectsWithTag("Key").Length;
-
         //Perintah objektif awal
         StartCoroutine(Perintah(3.0f, "Objektif : Cari kunci emas yang tersedia!"));
+        //Reset values.
+        keyCount = 0;
+        keyAvailable = GameObject.FindGameObjectsWithTag("Key").Length;
+        doneCollectingKeys = false;
+
     }
 
     public IEnumerator Perintah(float timeAppear, string perintahTeks)
@@ -40,5 +46,11 @@ public class GameManager : MonoBehaviour
             doneCollectingKeys = true;
         }
     }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 
 }
