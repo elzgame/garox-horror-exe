@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class Ghost : MonoBehaviour
 {
@@ -7,30 +8,47 @@ public class Ghost : MonoBehaviour
     public GameObject player;
     public float speed = 1;
     private NavMeshAgent agent;
-
-    void Start() {
+    public AudioClip soundKaget;
+    public AudioClip soundChasing;
+    public AudioClip soundSamlekom;
+    public AudioClip soundCaught;
+    private AudioSource source;
+    public int chasingTimeSound;
+    private bool isChasingSound = false;
+    void Start()
+    {
+        source = GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
-        // var ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        // RaycastHit hit;
-        // if (Physics.Raycast(ray, out hit, 100))
-        // {
-        //     if (hit.transform.tag == "Player")
-        //     {
-        //         float step = speed * Time.deltaTime;
-        //         transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z), step);
-        //         transform.LookAt(player.transform, Vector3.up);
-        //     }
-        // }
+        var ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100))
+        {
+            if (hit.transform.tag == "Player" && isChasingSound == false)
+            {
+                isChasingSound = true;
+                StartCoroutine(ChasingSound(5));
+            }
+        }
         // float step = speed * Time.deltaTime;
         // transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z), step);
         // transform.LookAt(player.transform, Vector3.up);
         agent.SetDestination(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
-
     }
+
+    IEnumerator ChasingSound(float chasingTime)
+    {
+        Debug.Log("Garox is chasing");
+        source.PlayOneShot(soundChasing);
+        source.PlayOneShot(soundKaget);
+        source.PlayOneShot(soundSamlekom);
+        yield return new WaitForSeconds(chasingTime);
+        isChasingSound = false;
+    }
+
 }
 
 
