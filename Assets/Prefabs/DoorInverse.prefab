@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 860952901088689603}
   - component: {fileID: 860952901088689612}
   - component: {fileID: 860952901088689613}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DoorInverse
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 860952902444327670}
   - component: {fileID: 860952902444327664}
   - component: {fileID: 860952902444327671}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door (1)
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 719823290559377888}
   - component: {fileID: 6487661115892579669}
   - component: {fileID: 1182942582411202363}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pCube5
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 8007156640083007372}
   - component: {fileID: 8900419487588630850}
   - component: {fileID: 8085826728009298943}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 3845545913172567778}
   - component: {fileID: 3527453472073851816}
   - component: {fileID: 6952512329767085841}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: polySurface1
   m_TagString: Door
   m_Icon: {fileID: 0}

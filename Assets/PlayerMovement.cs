@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed;
     public List<int> keyCollected;
     private GameManager gameManager;
+    private bool isFinish = false;
 
     void Start()
     {
@@ -44,6 +45,19 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.gameObject);
             GameManager.keyCount++;
             GameManager.audioSource.PlayOneShot(keySound);
+            keyCollected.Add(other.gameObject.GetComponent<Key>().keyID);
+        }
+
+        if (other.gameObject.tag == "Finish")
+        {
+            if (isFinish == false)
+            {
+                isFinish = true;
+                Cursor.lockState = CursorLockMode.None;
+                gameManager.finishUI.SetActive(true);
+                // finishTime.text = ""
+                GameManager.audioSource.PlayOneShot(gameManager.finishSound);
+            }
         }
 
         if (other.gameObject.tag == "Door")
@@ -74,5 +88,4 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
 }

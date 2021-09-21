@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
     public Animator perintahAnimator;
     private bool doneCollectingKeys;
     public AudioClip gameOverSound;
+    public AudioClip finishSound;
     public GameObject gameOverUI;
+    public GameObject finishUI;
 
 
     void Start()

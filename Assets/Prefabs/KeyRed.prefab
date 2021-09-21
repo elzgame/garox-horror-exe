@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4397313464539529056}
   - component: {fileID: 5233908791306043789}
   - component: {fileID: 5573803225363513423}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KeyRed
   m_TagString: KeyRed
   m_Icon: {fileID: 0}
