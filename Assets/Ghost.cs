@@ -28,7 +28,7 @@ public class Ghost : MonoBehaviour
         var directionToPlayer = player.transform.position -  transform.position ;
         var ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2,0));
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100))
+        if (Physics.Raycast(ray, out hit))
         {
             Debug.Log(hit.transform.gameObject.name);
             Debug.DrawRay(transform.position, directionToPlayer,Color.red);
