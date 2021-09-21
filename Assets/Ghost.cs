@@ -25,11 +25,13 @@ public class Ghost : MonoBehaviour
 
     void Update()
     {
+        var directionToPlayer = player.transform.position -  transform.position ;
         var ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2,0));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 100))
         {
             Debug.Log(hit.transform.gameObject.name);
+            Debug.DrawRay(transform.position, directionToPlayer,Color.red);
             if (hit.transform.tag == "Player" && isChasingSound == false)
             {
                 Debug.Log("Chasing Player!");
