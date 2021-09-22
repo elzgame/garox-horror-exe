@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +9,14 @@ public class PlayerMovement : MonoBehaviour
     // Custom from SuryaElz
     public AudioClip keySound;
     public AudioClip doorSound;
+    public AudioClip walkingSound;
     public CharacterController controller;
     public float movementSpeed;
     public List<int> keyCollected;
     private GameManager gameManager;
     private bool isFinish = false;
+    private bool isMoving = false;
+    public AudioSource walkingSource;
 
     void Start()
     {
@@ -27,7 +31,31 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * y;
 
         controller.Move(move * movementSpeed * Time.deltaTime);
+
+        if (x != 0 || y != 0)
+        {
+            if (isMoving == false)
+            {
+                isMoving = true;
+                StartCoroutine(Walking(4f));
+            }
+        }
+        else
+        {
+            walkingSource.Stop();
+            isMoving = false;
+        }
     }
+
+
+    IEnumerator Walking(float timerToStop)
+    {
+        walkingSource.Play();
+        yield return new WaitForSeconds(timerToStop);
+        isMoving = false;
+    }
+
+
 
 
     void OnTriggerEnter(Collider other)
