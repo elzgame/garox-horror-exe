@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         gameManager.gameOverUI.SetActive(true);
         GameManager.audioSource.PlayOneShot(gameManager.gameOverSound);
+        Time.timeScale = 0;
     }
 
 

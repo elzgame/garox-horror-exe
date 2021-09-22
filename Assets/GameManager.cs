@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     public AudioClip finishSound;
     public GameObject gameOverUI;
     public GameObject finishUI;
+    public Text timerText;
+    public Text timerTextFinish;
+    private int hourCount;
+    private float secondsCount;
+    private int minuteCount;
 
 
     void Start()
@@ -47,10 +52,31 @@ public class GameManager : MonoBehaviour
             StartCoroutine(Perintah(4.0f, "Semua kunci emas telah ditemukan, Objektif : Cari kunci merah untuk menyelesaikan game!"));
             doneCollectingKeys = true;
         }
+
+        UpdateTimerUI();
+
+    }
+
+    private void UpdateTimerUI()
+    {
+        secondsCount += Time.deltaTime;
+        //hourCount +"h:"+ 
+        timerText.text = "WAKTU : "  + minuteCount.ToString("00")+ ":"+ secondsCount.ToString("00");
+        if (secondsCount >= 60)
+        {
+            minuteCount++;
+            secondsCount = 0;
+        }
+        else if (minuteCount >= 60)
+        {
+            hourCount++;
+            minuteCount = 0;
+        }
     }
 
     public void RestartGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

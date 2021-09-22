@@ -85,6 +85,8 @@ public class PlayerMovement : MonoBehaviour
                 gameManager.finishUI.SetActive(true);
                 // finishTime.text = ""
                 GameManager.audioSource.PlayOneShot(gameManager.finishSound);
+                gameManager.timerTextFinish.text = gameManager.timerText.text;
+                Time.timeScale  = 0;
             }
         }
 
