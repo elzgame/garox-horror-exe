@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
             GameManager.keyCount++;
             GameManager.audioSource.PlayOneShot(keySound);
             keyCollected.Add(other.gameObject.GetComponent<Key>().keyID);
+            StartCoroutine(gameManager.Perintah(3.0f,"Kunci merah didapatkan!, Objektif : cari pintu untuk menyelesaikan game."));        
         }
 
         if (other.gameObject.tag == "Finish")
